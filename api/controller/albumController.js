@@ -7,8 +7,9 @@ export const addNewAlbum = (req, res) => {
     let newAlbum = new Album(req.body);
 
     newAlbum.save((err, album) => {
-        if (err){
+        if (err) {
             res.send(err);
+            return;
         }
         res.json(album);
     });
@@ -18,6 +19,7 @@ export const getAlbums = (req, res) => {
     Album.find({}, (err, album) => {
         if (err) {
             res.send(err);
+            return;
         }
         res.json(album);
     });
@@ -27,6 +29,7 @@ export const getAlbumWithID = (req, res) => {
     Album.findById(req.params.albumId, (err, album) => {
         if (err) {
             res.send(err);
+            return;
         }
         res.json(album);  
     });
@@ -36,6 +39,7 @@ export const updateAlbum = (req, res) => {
     Album.findOneAndUpdate ({ _id: req.params.albumId}, req.body, { new: true }, (err, album) => {
         if (err) {
             res.send(err);
+            return;
         }
         res.json(album);  
     });
@@ -45,6 +49,7 @@ export const deleteAlbum = (req, res) => {
     Album.remove({ _id: req.params.albumId}, (err, album) => {
         if (err) {
             res.send(err);
+            return;
         }
         res.json({message: 'Successfully deleted album'});   
     });

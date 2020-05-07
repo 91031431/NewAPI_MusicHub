@@ -10,6 +10,7 @@ export const addNewUser = (req, res) => {
     newUser.save((err, user) => {
         if (err){
             res.send(err);
+            return;
         }
         res.json(user);
     });
@@ -19,6 +20,7 @@ export const getUser = (req, res) => {
     User.find({}, (err, user) => {
         if (err) {
             res.send(err);
+            return;
         }
         res.json(user);
     });
