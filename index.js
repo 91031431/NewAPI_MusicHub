@@ -6,9 +6,9 @@ const MONGODB_URI = 'mongodb+srv://demi:159632Dami@cluster0-neife.mongodb.net/te
 
 
 import express from 'express';
-import routes from './api/routes/albumRouter';
-import router from './api/routes/artistRouter';
-import route from './api/routes/userRouter';
+import albumRouter from './api/routes/albumRouter';
+import artistRouter from './api/routes/artistRouter';
+import userRouter from './api/routes/userRouter';
 import bodyParser from 'body-parser';
 
 // const albumRouter = require('./api/routes/albumRouter');
@@ -17,26 +17,7 @@ import bodyParser from 'body-parser';
 const app = express();
 const PORT = 3000;
 
-
-//route
-app.get('/', (req, res) =>
-    //res.send(`a get request with / route on ${PORT}`)
-    // get data fisrt
-    res.json(data)
-);
-
-app.post('/newItem', (req, res) =>
-    res.send(`a post request with /newItem route on ${PORT}`)
-);
-
-app.put('/item', (req, res) =>
-    res.send(`a put request with /item route on ${PORT}`)
-);
-
-app.delete('/item', (req, res) =>
-    res.send(`a delete request with /item route on ${PORT}`)
-);
-
+//Server listen API connection
 app.listen(PORT, () =>
     console.log(`sever port ${PORT}`)
 );
@@ -53,15 +34,13 @@ mongoose.connect(MONGODB_URI || 'mongodb://localhost/mern_youtube',
 app.use(bodyParser.urlencoded({ extend: true }));
 app.use(bodyParser.json());
 
-app.use("/user", route);
-
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected');
 });
 
-routes(app);
-router(app);
-route(app);
+albumRouter(app);
+artistRouter(app);
+userRouter(app);
 
 
 //codigo DAVID
