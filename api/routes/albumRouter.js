@@ -4,6 +4,7 @@ import {
     getAlbumWithID, 
     updateAlbum, 
     deleteAlbum,
+    //getAlbumByTrack
 } from "../controller/albumController";
 
 const routes = (app) => {
@@ -15,6 +16,8 @@ const routes = (app) => {
         next();
     })
     .get(getAlbums)
+
+    //.get(getAlbumByTrack)
     
     //POST endpoint
     .post(addNewAlbum);

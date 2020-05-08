@@ -5,6 +5,7 @@ const Artist = mongoose.model('Artist', artistSchema);
 
 export const addNewArtist = (req, res) => {
     let newArtist = new Artist(req.body);
+    newArtist._id = new mongoose.Types.ObjectId();
 
     newArtist.save((err, album) => {
         if (err){
