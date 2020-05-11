@@ -7,7 +7,7 @@ import {
     addNewUser, 
     getUser, 
     signUpUser,
-
+    login,
 } from "../controller/userController";
 
 import { Mongoose } from "mongoose";
@@ -20,7 +20,8 @@ const route = (app) => {
         next();
     },  getUser)
     .post('/user', addNewUser)
-    .post("/signup", signUpUser); 
+    .post('/signup', signUpUser)
+    .post('/login', login); 
 }
         
 export default route;

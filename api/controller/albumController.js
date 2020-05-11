@@ -56,32 +56,32 @@ export const deleteAlbum = (req, res) => {
     });
 };
 
-//to get the old data without the update
-// export const updateAlbum = (req, res) => {
-//     Album.findOneAndUpdate ({ _id: req.params.albumId}, req.body, { })
-// }
-
 // export const getAlbumByTrack = (req, res) => {
 //     Album.findById(req.params.trackId, (err, album) => {
 //     if (err) {
 //         res.send(err);
 //         return;
 //     }
-//     res.json(album); 
-// if (doc) {
-//     res.status(200).json({
-//         album: doc,
-//         request: {
-//             type: 'GET',
-//             url: 'http://localhost:3000/albums' + id + '/tracks'
-//         }
+//     res.json(album);    
 //     });
-// } else {
-//     res.status(404).json({message: 'Album not found'});
-// }            
-// })
-// .catch(err => {
-// console.log(err);
-// res.status(500).json({error: err});
-// });
-// });
+// };
+
+
+    // res.json(album); 
+    // if (doc) {
+    //     res.status(200).json({
+    //         album: doc,
+    //         request: {
+    //             type: 'GET',
+    //             url: 'http://localhost:3000/albums' + id + '/tracks'
+    //         }
+    //     });
+    // } else {
+    //     res.status(404).json({message: 'Album not found'});
+    // }            
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({error: err});
+    // });
+    //}

@@ -4,7 +4,6 @@
 const mongoose = require('mongoose');
 const MONGODB_URI = 'mongodb+srv://demi:159632Dami@cluster0-neife.mongodb.net/test?retryWrites=true&w=majority';
 
-
 import express from 'express';
 import albumRouter from './api/routes/albumRouter';
 import artistRouter from './api/routes/artistRouter';
@@ -37,6 +36,8 @@ app.use(bodyParser.json());
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected');
 });
+
+
 
 albumRouter(app);
 artistRouter(app);
