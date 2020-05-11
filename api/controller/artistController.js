@@ -55,12 +55,3 @@ export const deleteArtist = (req, res) => {
         res.json({message: 'Successfully deleted artist'});   
     });
 };
-
-// export const getArtistWithName = (req,res) => {
-//     Artist.findOne(req.params.artistName, (err, album) => {
-//         if (err) {
-//             res.send(err);
-//         }
-//         res.json(album);  
-//     });
-// };

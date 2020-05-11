@@ -4,11 +4,13 @@ import {
     getAlbumWithID, 
     updateAlbum, 
     deleteAlbum,
-    //getAlbumByTrack,
 } from "../controller/albumController";
 
+import {auth} from "../controller/userController";
+
 const routes = (app) => {
-    app.route('/album')
+    app.use('/album', auth)
+    .route('/album')
     .get((req, res, next) => {
         //middleware
         console.log(`Request from ${req.originalUrl}`)
@@ -16,7 +18,6 @@ const routes = (app) => {
         next();
     })
     .get(getAlbums)
-
     //.get(getAlbumByTrack)
     
     //POST endpoint
@@ -26,7 +27,6 @@ const routes = (app) => {
 
     //get specifc ID
     .get(getAlbumWithID)
-    //.get(getAlbumByArtist)
     
     // put request
     .put(updateAlbum)

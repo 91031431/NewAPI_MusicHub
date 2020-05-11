@@ -16,16 +16,6 @@ export const addNewAlbum = (req, res) => {
     });
 };
 
-export const getAlbums = (req, res) => {
-    Album.find({}, (err, album) => {
-        if (err) {
-            res.send(err);
-            return;
-        }
-        res.json(album);
-    });
-};
-
 export const getAlbumWithID = (req, res) => {
     Album.findById(req.params.albumId, (err, album) => {
         if (err) {
@@ -56,32 +46,14 @@ export const deleteAlbum = (req, res) => {
     });
 };
 
-// export const getAlbumByTrack = (req, res) => {
-//     Album.findById(req.params.trackId, (err, album) => {
-//     if (err) {
-//         res.send(err);
-//         return;
-//     }
-//     res.json(album);    
-//     });
-// };
 
 
-    // res.json(album); 
-    // if (doc) {
-    //     res.status(200).json({
-    //         album: doc,
-    //         request: {
-    //             type: 'GET',
-    //             url: 'http://localhost:3000/albums' + id + '/tracks'
-    //         }
-    //     });
-    // } else {
-    //     res.status(404).json({message: 'Album not found'});
-    // }            
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //     res.status(500).json({error: err});
-    // });
-    //}
+export const getAlbums = async(req, res) => {
+    const genre = req.query.Genre;
+    let filter = {};
+    if(genre){
+        filter = {Genre: genre};
+    }
+    const albumsFound = await Album.find(filter);
+    return res.json(albumsFound);
+};

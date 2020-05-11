@@ -4,11 +4,13 @@ import {
     getArtistWithID, 
     updateArtist, 
     deleteArtist,
-    //getArtistByName,
 } from "../controller/artistController";
 
+import {auth} from "../controller/userController";
+
 const router = (app) => {
-    app.route('/artist')
+    app.use('/artist', auth)
+    .route('/artist')
     .get((req, res, next) => {
         //middleware
         console.log(`Request from ${req.originalUrl}`)
@@ -23,8 +25,6 @@ const router = (app) => {
 
     //get specifc ID
     .get(getArtistWithID)
-    //.get(getArtistByArtist)
-    //.get(getArtistByName)
 
     // put request
     .put(updateArtist)

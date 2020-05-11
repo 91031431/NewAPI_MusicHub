@@ -88,7 +88,7 @@ export const login = async (req, res, next) => {
     const exp = moment().add(24, 'hours').valueOf();
     const passphrase = 'example';
     const token = jwt.sign({
-        issue: userFound._id,
+        userId: userFound._id,
         exp: exp,
         iat: iat,
     }, {key: privateKey, passphrase: passphrase}, { algorithm: 'RS256' });
@@ -102,7 +102,6 @@ export const login = async (req, res, next) => {
 
 export const auth = async (req, res, next) => {
     const token = req.get('token');
-    console.log(token);
     jwt.verify(token, publicKey, {algorithm: ['RS256']}, (error, decoded) => {
         if (error) {
             console.error(error);
@@ -112,7 +111,7 @@ export const auth = async (req, res, next) => {
                 return res.status(400).send('Access token has expired');
             }
 
-            res.auth_issue = decoded.issue;
+            res.userId = decoded.userId;
             next();
         }
      }) ;
