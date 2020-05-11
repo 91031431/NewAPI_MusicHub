@@ -10,9 +10,6 @@ import artistRouter from './api/routes/artistRouter';
 import userRouter from './api/routes/userRouter';
 import bodyParser from 'body-parser';
 
-// const albumRouter = require('./api/routes/albumRouter');
-// const artistRouter = require('./api/routes/artistsRouter');
-
 const app = express();
 const PORT = 3000;
 
@@ -36,8 +33,6 @@ app.use(bodyParser.json());
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected');
 });
-
-
 
 albumRouter(app);
 artistRouter(app);
