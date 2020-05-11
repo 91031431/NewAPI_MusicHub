@@ -8,12 +8,14 @@ import {
     getUser, 
     signUpUser,
     login,
+    auth,
 } from "../controller/userController";
 
 import { Mongoose } from "mongoose";
 
 const route = (app) => {
-    app.get('/user', (req, res, next) => {
+    app.use('/user', auth)
+    .get('/user', (req, res, next) => {
         //middleware
         console.log(`Request from ${req.originalUrl}`)
         console.log(`Request type ${req.method}`)

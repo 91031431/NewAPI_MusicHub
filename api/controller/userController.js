@@ -3,6 +3,7 @@ import { userSchema } from '../modules/userModules';
 import moment from 'moment';
 import fs from'fs';
 import jwt from 'jsonwebtoken';
+import { decode } from 'punycode';
 
 const User = mongoose.model('User', userSchema);
 const bcrypt = require('bcrypt');
@@ -97,5 +98,23 @@ export const login = async (req, res, next) => {
         message: 'Authentication successfully finished.'
     };
     return res.status(201).json(response);
+};
 
-}
+export const auth = async (req, res, next) => {
+    const token = req.get('token');
+    console.log(token);
+    jwt.verify(token, publicKey, {algorithm: ['RS256']}, (error, decoded) => {
+        if (error) {
+            console.error(error);
+            return res.status(400).send(error);
+        } else {
+            if (decoded.exp <= Date.now()) {
+                return res.status(400).send('Access token has expired');
+            }
+
+            res.auth_issue = decoded.issue;
+            next();
+        }
+     }) ;
+
+};
